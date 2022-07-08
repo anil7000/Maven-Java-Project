@@ -13,7 +13,7 @@ pipeline {
             }            
             steps {
                 // Get some code from a GitHub repository
-                git credentialsId: 'git_hub_un_pwd', url: 'https://github.com/anil7000/Maven-Java-Project.git'                
+                git 'https://github.com/anil7000/Maven-Java-Project.git'
             }
         }
         stage('Compile Src Code'){
@@ -55,7 +55,7 @@ pipeline {
                 label 'buildserver'
             }
             steps{
-                deploy adapters: [tomcat9(credentialsId: 'appserver', path: '', url: 'http://18.188.247.12:8080/')], contextPath: 'webapp', war: '**/*.war'
+                deploy adapters: [tomcat9(credentialsId: 'server-credentials', path: '', url: 'http://18.188.247.12:8080/')], contextPath: 'webapp', war: '**/*.war'
             }                      
         }
         stage('Integration Testing'){
