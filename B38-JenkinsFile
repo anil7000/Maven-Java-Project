@@ -42,11 +42,11 @@ pipeline {
                 label 'buildserver'
             }
             steps{
-                sh 'mvn clean package' 
+                sh 'mvn clean package deploy' 
             }
             post{
                success {
-                  archiveArtifacts artifacts: '**/*.war', followSymlinks: false
+                  archiveArtifacts artifacts: '**/*', followSymlinks: false
                }
             }           
         }
@@ -68,3 +68,4 @@ pipeline {
         }
     }    
 }
+ 
